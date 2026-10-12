@@ -1,0 +1,42 @@
+{
+  "job_id": 1067965133361545,
+  "name": "Job-1",
+  "format": "MULTI_TASK",
+  "performance_target": "PERFORMANCE_OPTIMIZED",
+  "max_concurrent_runs": 1,
+  "queue": { "enabled": true },
+  "tasks": [
+    {
+      "task_key": "Task-A",
+      "run_if": "ALL_SUCCESS",
+      "notebook_task": {
+        "notebook_path": "/Workspace/Users/avinash.t@diggibyte.com/Databricks_Jobs/Basics/Notebook-A",
+        "source": "WORKSPACE"
+      },
+      "max_retries": 1,
+      "min_retry_interval_millis": 15000,
+      "retry_on_timeout": false,
+      "timeout_seconds": 0
+    },
+    {
+      "task_key": "Task-B",
+      "depends_on": [ { "task_key": "Task-A" } ],
+      "run_if": "ALL_SUCCESS",
+      "notebook_task": {
+        "notebook_path": "/Workspace/Users/avinash.t@diggibyte.com/Databricks_Jobs/Basics/Notebook-B",
+        "source": "WORKSPACE"
+      },
+      "timeout_seconds": 0
+    },
+    {
+      "task_key": "Task-C",
+      "depends_on": [ { "task_key": "Task-A" } ],
+      "run_if": "ALL_SUCCESS",
+      "notebook_task": {
+        "notebook_path": "/Workspace/Users/avinash.t@diggibyte.com/Databricks_Jobs/Basics/Notebook-C",
+        "source": "WORKSPACE"
+      },
+      "timeout_seconds": 0
+    }
+  ]
+}
